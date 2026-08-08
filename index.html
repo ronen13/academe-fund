@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AcadeMe.Fund — שאלון התאמה אישית למלגות וסיוע כלכלי</title>
+<meta name="description" content="שאלון קצר שמתאים לך מלגות וסיוע כלכלי רלוונטיים, בהתאם לפרופיל האישי והאקדמי שלך.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="stars" id="stars"></div>
+
+<div class="wrap">
+
+  <div class="brand">
+    <svg class="mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="20" r="19" stroke="#c9a24b" stroke-width="1.4"/>
+      <path d="M20 8 L23 17 L32 20 L23 23 L20 32 L17 23 L8 20 L17 17 Z" fill="#e9d59a"/>
+    </svg>
+    <div class="name">Acade<b>Me</b>.Fund</div>
+  </div>
+
+  <!-- ============ INTRO ============ -->
+  <section id="screen-intro" class="intro-card">
+    <h1>נמצא עבורך את המלגות <em>שמתאימות לך באמת</em></h1>
+    <p>כמה דקות של מענה על שאלות אישיות ואקדמיות — וה־AI של AcadeMe.Fund יתאים לך מלגות, מענקים וסיוע כלכלי מתוך מאגר רחב של קרנות, מוסדות ורשויות.</p>
+    <p>השאלון בנוי ב־6 שלבים קצרים. אפשר לעצור ולחזור בכל שלב.</p>
+
+    <div class="notice">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 6v6c0 5 3.8 8.7 9 10 5.2-1.3 9-5 9-10V6l-9-4z" stroke="currentColor" stroke-width="1.6"/><path d="M12 8v5M12 16h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <p><strong>לב ליבו של הפרטיות שלך:</strong> חלק מהשאלות נוגעות במידע רגיש (מצב כלכלי, מוגבלות, השתייכות לאוכלוסייה מסוימת). המידע משמש <strong>אך ורק</strong> להתאמת מלגות ומענים רלוונטיים עבורך, ואפשר לדלג על כל שאלה שלא נוח לך לענות עליה.</p>
+    </div>
+
+    <div class="btn-row">
+      <button type="button" class="btn btn-primary" id="btn-start">בואו נתחיל ›</button>
+    </div>
+  </section>
+
+  <!-- ============ FORM ============ -->
+  <form id="quiz" class="card" style="display:none;" novalidate>
+
+    <div class="progress" id="progress">
+      <div class="fill" id="progressFill" style="width:0%"></div>
+      <!-- dots injected by JS -->
+    </div>
+
+    <!-- ---- STAGE 1 ---- -->
+    <div class="stage" data-stage="1">
+      <div class="stage-head">
+        <div class="stage-eyebrow">שלב 1 מתוך 6</div>
+        <h2>פרטים אישיים</h2>
+        <p>נעזר בפרטי הקשר כדי לשלוח אליך את ההתאמות, ובכמה שאלות רקע כדי לדייק אותן.</p>
+      </div>
+
+      <div class="field">
+        <label class="q">פרטי קשר</label>
+        <div class="grid-2">
+          <input type="text" name="full_name" placeholder="שם מלא" required>
+          <input type="tel" name="phone" placeholder="מספר טלפון נייד">
+        </div>
+        <div style="margin-top:12px;">
+          <input type="email" name="email" placeholder="דוא״ל" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="q">מה גילך?</label>
+        <div class="options cols-2" data-name="age" data-type="radio">
+          <label class="opt"><input type="radio" name="age" value="עד 18"><span>עד 18</span></label>
+          <label class="opt"><input type="radio" name="age" value="18–21"><span>18–21</span></label>
+          <label class="opt"><input type="radio" name="age" value="22–29"><span>22–29</span></label>
+          <label class="opt"><input type="radio" name="age" value="30–39"><span>30–39</span></label>
+          <label class="opt"><input type="radio" name="age" value="40 ומעלה"><span>40 ומעלה</span></label>
+        </div>
+        <span class="match-tag">✦ מתאים: מלגות לפי גיל, סטודנטים בוגרים, הסבת מקצוע, מכינות 30+, קריירה שנייה</span>
+      </div>
+
+      <div class="field">
+        <label class="q">מהו מקום מגוריך הקבוע?</label>
+        <input type="text" name="residence_town" placeholder="יישוב" style="margin-bottom:12px;">
+        <label class="q" style="font-weight:500; font-size:14.5px; margin-bottom:8px;">האם גדלת ביישוב זה?</label>
+        <div class="options cols-2" data-name="grew_up_here" data-type="radio">
+          <label class="opt"><input type="radio" name="grew_up_here" value="כן"><span>כן</span></label>
+          <label class="opt"><input type="radio" name="grew_up_here" value="לא"><span>לא</span></label>
+        </div>
+        <span class="match-tag">✦ מתאים: מלגות רשות מקומית, מרכז צעירים, מלגות פריפריה, מלגות בני מקום</span>
+      </div>
+
+      <div class="field">
+        <label class="q">היכן את/ה מתגורר/ת במהלך הלימודים?</label>
+        <div class="options cols-2" data-name="housing" data-type="radio">
+          <label class="opt"><input type="radio" name="housing" value="בבית ההורים"><span>בבית ההורים</span></label>
+          <label class="opt"><input type="radio" name="housing" value="בדירה שכורה"><span>בדירה שכורה</span></label>
+          <label class="opt"><input type="radio" name="housing" value="במעונות סטודנטים"><span>במעונות סטודנטים</span></label>
+          <label class="opt"><input type="radio" name="housing" value="דיור אחר"><span>דיור אחר</span></label>
+        </div>
+        <div class="conditional" id="cond-rent" data-show-when="housing=בדירה שכורה">
+          <label class="q" style="font-weight:500; font-size:14.5px;">האם יש קושי במימון מגורים?</label>
+          <div class="options cols-2" data-name="rent_difficulty" data-type="radio">
+            <label class="opt"><input type="radio" name="rent_difficulty" value="כן"><span>כן</span></label>
+            <label class="opt"><input type="radio" name="rent_difficulty" value="לא"><span>לא</span></label>
+          </div>
+        </div>
+        <span class="match-tag">✦ מתאים: מלגות דיור, שכר דירה, מעונות, סיוע קיום ותחבורה</span>
+      </div>
+    </div>
+
+    <!-- ---- STAGE 2 ---- -->
+    <div class="stage" data-stage="2" hidden>
+      <div class="stage-head">
+        <div class="stage-eyebrow">שלב 2 מתוך 6</div>
+        <h2>סוג הסיוע המבוקש</h2>
+        <p>אילו סוגי סיוע תרצה/י שנאתר עבורך? אפשר לבחור כמה אפשרויות.</p>
+      </div>
+      <div class="field">
+        <div class="options cols-2" data-name="assistance_types" data-type="checkbox">
+          <label class="opt"><input type="checkbox" name="assistance_types" value="מלגת שכר לימוד"><span>מלגת שכר לימוד</span></label>
+          <label class="opt"><input type="checkbox" name="assistance_types" value="מלגת קיום חודשית"><span>מלגת קיום חודשית</span></label>
+          <label class="opt"><input type="checkbox" name="assistance_types" value="סיוע בשכר דירה"><span>סיוע בשכר דירה</span></label>
+          <label class="opt"><input type="checkbox" name="assistance_types" value="סיוע במעונות"><span>סיוע במעונות</span></label>
+          <label class="opt"><input type="checkbox" name="assistance_types" value="סיוע מזון"><span>סיוע מזון</span></label>
+          <label class="opt"><input type="checkbox" name="assistance_types" value="סיוע בתחבורה"><span>סיוע בתחבורה</span></label>
+          <label class="opt"><input type="checkbox" name="assistance_types" value="מחשב וציוד לימודי"><span>מחשב וציוד לימודי</span></label>
+          <label class="opt"><input type="checkbox" name="assistance_types" value="מלגת חירום"><span>מלגת חירום</span></label>
+          <label class="opt"><input type="checkbox" name="assistance_types" value="מלגת הצטיינות"><span>מלגת הצטיינות</span></label>
+          <label class="opt"><input type="checkbox" name="assistance_types" value="מלגה תמורת התנדבות"><span>מלגה תמורת התנדבות</span></label>
+          <label class="opt"><input type="checkbox" name="assistance_types" value="מלגה לתואר מתקדם / מחקר"><span>מלגה לתואר מתקדם / מחקר</span></label>
+          <label class="opt"><input type="checkbox" name="assistance_types" value="כל אפשרות מתאימה"><span>כל אפשרות מתאימה</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---- STAGE 3 ---- -->
+    <div class="stage" data-stage="3" hidden>
+      <div class="stage-head">
+        <div class="stage-eyebrow">שלב 3 מתוך 6</div>
+        <h2>לימודים והשכלה</h2>
+        <p>פרטים על המסלול האקדמי שלך — קיים או מתוכנן.</p>
+      </div>
+
+      <div class="field">
+        <label class="q">מה סטטוס הלימודים שלך?</label>
+        <div class="options cols-2" data-name="study_status" data-type="radio">
+          <label class="opt"><input type="radio" name="study_status" value="מתעניין/ת בלימודים"><span>מתעניין/ת בלימודים</span></label>
+          <label class="opt"><input type="radio" name="study_status" value="נרשמתי ללימודים"><span>נרשמתי ללימודים</span></label>
+          <label class="opt"><input type="radio" name="study_status" value="התקבלתי ללימודים"><span>התקבלתי ללימודים</span></label>
+          <label class="opt"><input type="radio" name="study_status" value="סטודנט/ית פעיל/ה"><span>סטודנט/ית פעיל/ה</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="q">באיזה מוסד את/ה לומד/ת או מתכנן/ת ללמוד?</label>
+        <div class="grid-2">
+          <input type="text" name="institution" placeholder="שם מוסד">
+          <input type="text" name="campus" placeholder="קמפוס">
+        </div>
+        <span class="match-tag">✦ מתאים: מלגות מוסדיות, דיקנט, קרנות תורמים, מלגות פקולטה</span>
+      </div>
+
+      <div class="field">
+        <label class="q">באיזה תחום לימודים?</label>
+        <div class="options cols-2" data-name="field_of_study" data-type="radio">
+          <label class="opt"><input type="radio" name="field_of_study" value="מדעי המחשב והייטק"><span>מדעי המחשב והייטק</span></label>
+          <label class="opt"><input type="radio" name="field_of_study" value="הנדסה"><span>הנדסה</span></label>
+          <label class="opt"><input type="radio" name="field_of_study" value="רפואה ומקצועות הבריאות"><span>רפואה ומקצועות הבריאות</span></label>
+          <label class="opt"><input type="radio" name="field_of_study" value="משפטים"><span>משפטים</span></label>
+          <label class="opt"><input type="radio" name="field_of_study" value="חינוך והוראה"><span>חינוך והוראה</span></label>
+          <label class="opt"><input type="radio" name="field_of_study" value="מדעי החברה"><span>מדעי החברה</span></label>
+          <label class="opt"><input type="radio" name="field_of_study" value="מדעי החיים"><span>מדעי החיים</span></label>
+          <label class="opt"><input type="radio" name="field_of_study" value="אומנות ועיצוב"><span>אומנות ועיצוב</span></label>
+          <label class="opt"><input type="radio" name="field_of_study" value="אחר"><span>אחר</span></label>
+        </div>
+        <div class="conditional" id="cond-field-other" data-show-when="field_of_study=אחר">
+          <input type="text" name="field_of_study_other" placeholder="פרט/י תחום לימודים אחר">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="q">מה סוג הלימודים?</label>
+        <div class="options cols-2" data-name="study_type" data-type="radio">
+          <label class="opt"><input type="radio" name="study_type" value="מכינה קדם אקדמית"><span>מכינה קדם אקדמית</span></label>
+          <label class="opt"><input type="radio" name="study_type" value="הנדסאי/טכנאי"><span>הנדסאי/טכנאי</span></label>
+          <label class="opt"><input type="radio" name="study_type" value="תואר ראשון"><span>תואר ראשון</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="q">באיזו שנת לימודים?</label>
+        <div class="options cols-2" data-name="study_year" data-type="radio">
+          <label class="opt"><input type="radio" name="study_year" value="לפני תחילת לימודים"><span>לפני תחילת לימודים</span></label>
+          <label class="opt"><input type="radio" name="study_year" value="שנה ראשונה"><span>שנה ראשונה</span></label>
+          <label class="opt"><input type="radio" name="study_year" value="שנה שנייה"><span>שנה שנייה</span></label>
+          <label class="opt"><input type="radio" name="study_year" value="שנה שלישית"><span>שנה שלישית</span></label>
+          <label class="opt"><input type="radio" name="study_year" value="שנה רביעית ומעלה"><span>שנה רביעית ומעלה</span></label>
+          <label class="opt"><input type="radio" name="study_year" value="לימודי מחקר"><span>לימודי מחקר</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="q">האם יש לך הישגים אקדמיים מיוחדים?</label>
+        <div class="options cols-2" data-name="achievements" data-type="checkbox">
+          <label class="opt"><input type="checkbox" name="achievements" value="ממוצע ציונים גבוה"><span>ממוצע ציונים גבוה</span></label>
+          <label class="opt"><input type="checkbox" name="achievements" value="הצטיינות דיקן"><span>הצטיינות דיקן</span></label>
+          <label class="opt"><input type="checkbox" name="achievements" value="פרסים"><span>פרסים</span></label>
+          <label class="opt"><input type="checkbox" name="achievements" value="פעילות מחקרית"><span>פעילות מחקרית</span></label>
+          <label class="opt"><input type="checkbox" name="achievements" value="אין"><span>אין</span></label>
+        </div>
+        <div style="margin-top:12px;">
+          <input type="text" name="gpa" placeholder="ממוצע ציונים (אם רלוונטי)">
+        </div>
+        <span class="match-tag">✦ מתאים: מלגות הצטיינות, מצוינות, מחקר ותורמים</span>
+      </div>
+    </div>
+
+    <!-- ---- STAGE 4 ---- -->
+    <div class="stage" data-stage="4" hidden>
+      <div class="stage-head">
+        <div class="stage-eyebrow">שלב 4 מתוך 6</div>
+        <h2>רקע אישי ואוכלוסיות יעד</h2>
+        <p>המידע הבא רגיש ומיועד להתאמה בלבד — אפשר לדלג על כל שאלה.</p>
+      </div>
+
+      <div class="field">
+        <label class="q">האם אחד מהוריך בעל השכלה אקדמית?</label>
+        <div class="options cols-2" data-name="parents_education" data-type="radio">
+          <label class="opt"><input type="radio" name="parents_education" value="שני ההורים בעלי תואר"><span>שני ההורים בעלי תואר</span></label>
+          <label class="opt"><input type="radio" name="parents_education" value="אחד ההורים בעל תואר"><span>אחד ההורים בעל תואר</span></label>
+          <label class="opt"><input type="radio" name="parents_education" value="אף אחד מההורים"><span>אף אחד מההורים</span></label>
+          <label class="opt"><input type="radio" name="parents_education" value="איני יודע/ת"><span>איני יודע/ת</span></label>
+        </div>
+        <span class="match-tag">✦ מתאים: דור ראשון להשכלה גבוהה, מוביליות חברתית, מצוינות מכלילה</span>
+        <div class="skip-note">אפשר לדלג על שאלה זו.</div>
+      </div>
+
+      <div class="field">
+        <label class="q">האם את/ה משתייך/ת לאחת מהקבוצות הבאות? (ניתן לבחור כמה אפשרויות)</label>
+        <div class="options cols-2" data-name="target_groups" data-type="checkbox">
+          <label class="opt"><input type="checkbox" name="target_groups" value="החברה הערבית"><span>החברה הערבית</span></label>
+          <label class="opt"><input type="checkbox" name="target_groups" value="החברה הבדואית"><span>החברה הבדואית</span></label>
+          <label class="opt"><input type="checkbox" name="target_groups" value="החברה הדרוזית"><span>החברה הדרוזית</span></label>
+          <label class="opt"><input type="checkbox" name="target_groups" value="החברה הצ'רקסית"><span>החברה הצ'רקסית</span></label>
+          <label class="opt"><input type="checkbox" name="target_groups" value="בוגר/ת החינוך החרדי"><span>בוגר/ת החינוך החרדי</span></label>
+          <label class="opt"><input type="checkbox" name="target_groups" value="יוצא/ת אתיופיה"><span>יוצא/ת אתיופיה</span></label>
+          <label class="opt"><input type="checkbox" name="target_groups" value="עולה חדש/ה"><span>עולה חדש/ה</span></label>
+          <label class="opt"><input type="checkbox" name="target_groups" value="תושב/ת חוזר/ת"><span>תושב/ת חוזר/ת</span></label>
+          <label class="opt"><input type="checkbox" name="target_groups" value="אדם עם מוגבלות"><span>אדם עם מוגבלות</span></label>
+          <label class="opt"><input type="checkbox" name="target_groups" value="מצב רפואי מתמשך"><span>מצב רפואי מתמשך</span></label>
+          <label class="opt"><input type="checkbox" name="target_groups" value="נכות פיזית או נפשית מוכרת"><span>נכות פיזית או נפשית מוכרת</span></label>
+          <label class="opt"><input type="checkbox" name="target_groups" value="תושב/ת פריפריה חברתית או גיאוגרפית"><span>תושב/ת פריפריה חברתית או גיאוגרפית</span></label>
+          <label class="opt"><input type="checkbox" name="target_groups" value="דור ראשון להשכלה גבוהה"><span>דור ראשון להשכלה גבוהה</span></label>
+          <label class="opt"><input type="checkbox" name="target_groups" value="אף אחת מהאפשרויות"><span>אף אחת מהאפשרויות</span></label>
+        </div>
+        <div class="skip-note">מידע רגיש — משמש להתאמה בלבד, ואפשר לדלג.</div>
+      </div>
+
+      <div class="field">
+        <label class="q">האם השתייכת למסגרת חינוך חרדית?</label>
+        <div class="options cols-2" data-name="haredi_background" data-type="radio">
+          <label class="opt"><input type="radio" name="haredi_background" value="כן"><span>כן</span></label>
+          <label class="opt"><input type="radio" name="haredi_background" value="לא"><span>לא</span></label>
+        </div>
+        <div class="conditional" id="cond-haredi" data-show-when="haredi_background=כן">
+          <label class="q" style="font-weight:500; font-size:14.5px;">האם מעוניין/ת בליווי נוסף?</label>
+          <div class="options cols-2" data-name="haredi_support" data-type="radio">
+            <label class="opt"><input type="radio" name="haredi_support" value="מעוניין/ת בליווי נוסף"><span>מעוניין/ת בליווי נוסף</span></label>
+            <label class="opt"><input type="radio" name="haredi_support" value="לא נדרש"><span>לא נדרש</span></label>
+          </div>
+        </div>
+        <span class="match-tag">✦ מתאים: מלגות יוצאי החברה החרדית, תוכניות שילוב וליווי</span>
+      </div>
+    </div>
+
+    <!-- ---- STAGE 5 ---- -->
+    <div class="stage" data-stage="5" hidden>
+      <div class="stage-head">
+        <div class="stage-eyebrow">שלב 5 מתוך 6</div>
+        <h2>מצב משפחתי וכלכלי</h2>
+        <p>עוזר לנו להתאים מלגות קיום, דיור ותמיכה כלכלית מדויקת.</p>
+      </div>
+
+      <div class="field">
+        <label class="q">מה מצבך המשפחתי?</label>
+        <div class="options cols-2" data-name="family_status" data-type="radio">
+          <label class="opt"><input type="radio" name="family_status" value="רווק/ה"><span>רווק/ה</span></label>
+          <label class="opt"><input type="radio" name="family_status" value="נשוי/אה"><span>נשוי/אה</span></label>
+          <label class="opt"><input type="radio" name="family_status" value="גרוש/ה"><span>גרוש/ה</span></label>
+          <label class="opt"><input type="radio" name="family_status" value="אלמן/ה"><span>אלמן/ה</span></label>
+          <label class="opt"><input type="radio" name="family_status" value="אחר"><span>אחר</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="q">האם יש לך ילדים?</label>
+        <div class="options cols-2" data-name="has_children" data-type="radio">
+          <label class="opt"><input type="radio" name="has_children" value="כן"><span>כן</span></label>
+          <label class="opt"><input type="radio" name="has_children" value="לא"><span>לא</span></label>
+        </div>
+        <div class="conditional" id="cond-children" data-show-when="has_children=כן">
+          <div class="grid-2">
+            <input type="text" name="children_count" placeholder="מספר ילדים">
+            <input type="text" name="children_ages" placeholder="גילאי ילדים">
+          </div>
+        </div>
+        <span class="match-tag">✦ מתאים: מלגות להורים, סיוע מעונות, מלגות חד הוריים</span>
+      </div>
+
+      <div class="field">
+        <label class="q">האם את/ה עובד/ת במהלך הלימודים?</label>
+        <div class="options cols-2" data-name="employment" data-type="radio">
+          <label class="opt"><input type="radio" name="employment" value="לא"><span>לא</span></label>
+          <label class="opt"><input type="radio" name="employment" value="עבודה חלקית"><span>עבודה חלקית</span></label>
+          <label class="opt"><input type="radio" name="employment" value="עבודה מלאה"><span>עבודה מלאה</span></label>
+        </div>
+        <div style="margin-top:12px;">
+          <input type="text" name="monthly_income" placeholder="היקף הכנסה חודשי (אם רלוונטי)">
+        </div>
+        <span class="match-tag">✦ מתאים: מלגות קיום, מלגות ללא התנדבות</span>
+      </div>
+
+      <div class="field">
+        <label class="q">מה גובה המלגה אותה את/ה מעריך/ה שתצטרך/י?</label>
+        <div class="options cols-2" data-name="scholarship_amount" data-type="radio">
+          <label class="opt"><input type="radio" name="scholarship_amount" value="עד 5,000 ₪"><span>עד 5,000 ₪</span></label>
+          <label class="opt"><input type="radio" name="scholarship_amount" value="5,001–10,000 ₪"><span>5,001–10,000 ₪</span></label>
+          <label class="opt"><input type="radio" name="scholarship_amount" value="10,001–20,000 ₪"><span>10,001–20,000 ₪</span></label>
+          <label class="opt"><input type="radio" name="scholarship_amount" value="מעל 20,000 ₪"><span>מעל 20,000 ₪</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="q">האם, להערכתך, תצטרך/י מקורות מימון נוספים (משלימים) עבור שנת הלימודים הקרובה? אם כן — באיזה היקף?</label>
+        <textarea name="extra_funding_year" placeholder="ניתן לפרט כאן, או להשאיר ריק"></textarea>
+      </div>
+
+      <div class="field">
+        <label class="q">האם את/ה מעריך/ה כי תצטרך/י מקורות מימון נוספים לטובת השלמת התואר? אם כן — באיזה היקף?</label>
+        <textarea name="extra_funding_degree" placeholder="ניתן לפרט כאן, או להשאיר ריק"></textarea>
+      </div>
+    </div>
+
+    <!-- ---- STAGE 6 ---- -->
+    <div class="stage" data-stage="6" hidden>
+      <div class="stage-head">
+        <div class="stage-eyebrow">שלב 6 מתוך 6</div>
+        <h2>שירות וזכויות מיוחדות</h2>
+        <p>השלב האחרון — ואז נתחיל להתאים עבורך את המלגות הרלוונטיות.</p>
+      </div>
+
+      <div class="field">
+        <label class="q">האם ביצעת שירות צבאי / לאומי / אזרחי?</label>
+        <div class="options cols-2" data-name="service_type_status" data-type="radio">
+          <label class="opt"><input type="radio" name="service_type_status" value="כן"><span>כן</span></label>
+          <label class="opt"><input type="radio" name="service_type_status" value="לא"><span>לא</span></label>
+          <label class="opt"><input type="radio" name="service_type_status" value="פטור/ה"><span>פטור/ה</span></label>
+          <label class="opt"><input type="radio" name="service_type_status" value="עדיין בשירות"><span>עדיין בשירות</span></label>
+        </div>
+        <div style="margin-top:12px;">
+          <input type="text" name="service_type" placeholder="סוג שירות (אם רלוונטי)">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="q">האם את/ה משרת/ת מילואים פעיל/ה?</label>
+        <div class="options cols-2" data-name="reserve_duty" data-type="radio">
+          <label class="opt"><input type="radio" name="reserve_duty" value="כן"><span>כן</span></label>
+          <label class="opt"><input type="radio" name="reserve_duty" value="לא"><span>לא</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="q">האם בן/בת זוגך משרת/ת מילואים?</label>
+        <div class="options cols-2" data-name="spouse_reserve_duty" data-type="radio">
+          <label class="opt"><input type="radio" name="spouse_reserve_duty" value="כן"><span>כן</span></label>
+          <label class="opt"><input type="radio" name="spouse_reserve_duty" value="לא"><span>לא</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="consent">
+          <input type="checkbox" id="consent" name="consent" required>
+          <label for="consent">אני מאשר/ת שהמידע שמסרתי ישמש את AcadeMe.Fund לצורך התאמת מלגות וסיוע כלכלי רלוונטיים עבורי בלבד.</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="error-banner" id="errorBanner">אירעה שגיאה בשליחת השאלון. אפשר לנסות שוב, או ליצור איתנו קשר ישירות.</div>
+
+    <div class="nav-row">
+      <button type="button" class="btn btn-ghost" id="btn-back">‹ חזרה</button>
+      <button type="button" class="btn btn-primary" id="btn-next">המשך ›</button>
+      <button type="submit" class="btn btn-primary" id="btn-submit" style="display:none;">שליחת השאלון ✦</button>
+    </div>
+  </form>
+
+  <!-- ============ SUCCESS ============ -->
+  <section id="screen-success" class="card success" style="display:none;">
+    <div class="beacon"></div>
+    <h2>תודה, <span id="successName">·</span>!</h2>
+    <p>קיבלנו את הפרטים שלך. צוות AcadeMe.Fund יתחיל להתאים עבורך מלגות ומענים רלוונטיים, ויחזור אליך בהקדם לפרטי הקשר שהשארת.</p>
+  </section>
+
+  <div class="footer-note">AcadeMe.Fund · מבית <a href="https://inno-tech.co.il" target="_blank" rel="noopener">Inno-Tech</a></div>
+
+</div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
