@@ -14,8 +14,8 @@
 
   <div class="brand">
     <svg class="mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="20" cy="20" r="19" stroke="#c9a24b" stroke-width="1.4"/>
-      <path d="M20 8 L23 17 L32 20 L23 23 L20 32 L17 23 L8 20 L17 17 Z" fill="#e9d59a"/>
+      <circle cx="20" cy="20" r="19" stroke="#e8690f" stroke-width="1.4"/>
+      <path d="M20 8 L23 17 L32 20 L23 23 L20 32 L17 23 L8 20 L17 17 Z" fill="#f7a75c"/>
     </svg>
     <div class="name">Acade<b>Me</b>.Fund</div>
   </div>
@@ -38,11 +38,6 @@
 
   <!-- ============ FORM ============ -->
   <form id="quiz" class="card" style="display:none;" novalidate>
-
-    <div class="progress" id="progress">
-      <div class="fill" id="progressFill" style="width:0%"></div>
-      <!-- dots injected by JS -->
-    </div>
 
     <!-- ---- STAGE 1 ---- -->
     <div class="stage" data-stage="1">
@@ -389,6 +384,11 @@
       <button type="button" class="btn btn-ghost" id="btn-back">‹ חזרה</button>
       <button type="button" class="btn btn-primary" id="btn-next">המשך ›</button>
       <button type="submit" class="btn btn-primary" id="btn-submit" style="display:none;">שליחת השאלון ✦</button>
+    </div>
+
+    <div class="progress progress-bottom" id="progress">
+      <div class="fill" id="progressFill" style="width:0%"></div>
+      <!-- dots injected by JS -->
     </div>
   </form>
 
