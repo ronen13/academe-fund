@@ -302,7 +302,7 @@ input:focus, textarea:focus{
   text-align:center; margin-top:26px; font-size:13px; color:var(--blue-400);
 }
 .footer-note a{color:var(--orange-600); text-decoration:none;}
-.footer-note .hl{color:var(--orange-600);}
+.footer-note .hl{color:var(--orange-600); font-weight:700;}
 
 @media (max-width:520px){
   .intro-card, .card{padding:30px 22px;}
