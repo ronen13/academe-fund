@@ -21,7 +21,8 @@ var COLUMNS = [
   'family_status', 'has_children', 'children_count', 'children_ages',
   'employment', 'monthly_income', 'scholarship_amount', 'extra_funding_year', 'extra_funding_degree',
   'service_type_status', 'service_type', 'reserve_duty', 'spouse_reserve_duty',
-  'consent', 'source'
+  'consent', 'source',
+  'external_tuition_funding', 'external_tuition_funding_source'
 ];
 
 /**

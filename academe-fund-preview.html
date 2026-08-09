@@ -310,6 +310,7 @@ input:focus, textarea:focus{
   text-align:center; margin-top:26px; font-size:13px; color:var(--blue-400);
 }
 .footer-note a{color:var(--orange-600); text-decoration:none;}
+.footer-note b{color:var(--orange-600); font-weight:700;}
 
 @media (max-width:520px){
   .intro-card, .card{padding:30px 22px;}
@@ -456,10 +457,9 @@ input:focus, textarea:focus{
 
       <div class="field">
         <label class="q">באיזה מוסד את/ה לומד/ת או מתכנן/ת ללמוד?</label>
-        <div class="grid-2">
-          <input type="text" name="institution" placeholder="שם מוסד">
-          <input type="text" name="campus" placeholder="קמפוס">
-        </div>
+        <input type="text" name="institution" id="institutionInput" placeholder="שם מוסד" list="institutions-list" autocomplete="off">
+        <datalist id="institutions-list"></datalist>
+        <span class="hint">התחל/י להקליד — ניתן גם להזין שם מוסד שאינו ברשימה.</span>
         <span class="match-tag">✦ מתאים: מלגות מוסדיות, דיקנט, קרנות תורמים, מלגות פקולטה</span>
       </div>
 
@@ -634,6 +634,18 @@ input:focus, textarea:focus{
       </div>
 
       <div class="field">
+        <label class="q">האם את/ה נעזר/ת במימון חיצוני נוסף לתשלום שכר הלימוד?</label>
+        <div class="options cols-2" data-name="external_tuition_funding" data-type="radio">
+          <label class="opt"><input type="radio" name="external_tuition_funding" value="כן"><span>כן</span></label>
+          <label class="opt"><input type="radio" name="external_tuition_funding" value="לא"><span>לא</span></label>
+        </div>
+        <div class="conditional" id="cond-external-funding" data-show-when="external_tuition_funding=כן">
+          <input type="text" name="external_tuition_funding_source" placeholder="ממי? (הורים, הלוואה, קרן וכו')">
+        </div>
+        <span class="match-tag">✦ מתאים: מלגות המשלימות מימון קיים, הפחתת נטל הלוואות</span>
+      </div>
+
+      <div class="field">
         <label class="q">האם, להערכתך, תצטרך/י מקורות מימון נוספים (משלימים) עבור שנת הלימודים הקרובה? אם כן — באיזה היקף?</label>
         <textarea name="extra_funding_year" placeholder="ניתן לפרט כאן, או להשאיר ריק"></textarea>
       </div>
@@ -710,7 +722,7 @@ input:focus, textarea:focus{
     <p>קיבלנו את הפרטים שלך. צוות AcadeMe.Fund יתחיל להתאים עבורך מלגות ומענים רלוונטיים, ויחזור אליך בהקדם לפרטי הקשר שהשארת.</p>
   </section>
 
-  <div class="footer-note">AcadeMe.Fund · מבית <a href="https://inno-tech.co.il" target="_blank" rel="noopener">Inno-Tech</a></div>
+  <div class="footer-note">AcadeMe.Fund – <b>משל</b>י<b>מ</b>י<b>ם</b> לך את התואר</div>
 
 </div>
 
@@ -718,6 +730,60 @@ input:focus, textarea:focus{
 window.ACADEME_CONFIG = { GOOGLE_SCRIPT_URL: "" };
 (function () {
   "use strict";
+
+  /* ---------- institutions autocomplete ---------- */
+  var ISRAELI_INSTITUTIONS = [
+    "אוניברסיטת תל אביב",
+    "האוניברסיטה העברית בירושלים",
+    "הטכניון – מכון טכנולוגי לישראל",
+    "אוניברסיטת בר-אילן",
+    "אוניברסיטת חיפה",
+    "אוניברסיטת בן-גוריון בנגב",
+    "אוניברסיטת אריאל",
+    "האוניברסיטה הפתוחה",
+    "אוניברסיטת רייכמן (המרכז הבינתחומי הרצליה)",
+    "מכון ויצמן למדע",
+    "המכללה האקדמית תל אביב-יפו",
+    "המכללה האקדמית נתניה",
+    "המכללה האקדמית אשקלון",
+    "המכללה האקדמית כנרת",
+    "המכללה האקדמית עמק יזרעאל",
+    "המכללה האקדמית ספיר",
+    "המכללה האקדמית אחוה",
+    "המכללה האקדמית תל-חי",
+    "המכללה האקדמית רופין",
+    "המכללה האקדמית להנדסה אורט בראודה",
+    "המכללה האקדמית להנדסה סמי שמעון (SCE)",
+    "מכללת אפקה להנדסה",
+    "המכללה האקדמית להנדסה אזרעלי ירושלים",
+    "המכללה האקדמית הדסה",
+    "מכללת שנקר – הנדסה, עיצוב ואמנות",
+    "בצלאל – אקדמיה לאמנות ועיצוב ירושלים",
+    "סמינר הקיבוצים – המכללה לחינוך, לטכנולוגיה ולאמנויות",
+    "מכללת אורות ישראל",
+    "מכללת אורנים",
+    "מכללת בית ברל",
+    "מכללת גורדון",
+    "המכללה האקדמית לחינוך ע\"ש קיי",
+    "מכללת לוינסקי-וינגייט לחינוך",
+    "מכללת תלפיות",
+    "מכללת שאנן",
+    "מכון לב – המכללה הטכנולוגית ירושלים (JCT)",
+    "הקריה האקדמית אונו",
+    "המכללה האקדמית כרמל",
+    "מכללת ויצו חיפה",
+    "מכללת דן קיסריה",
+    "המכללה האקדמית אשכול"
+  ];
+
+  var institutionsList = document.getElementById("institutions-list");
+  if (institutionsList) {
+    ISRAELI_INSTITUTIONS.forEach(function (name) {
+      var opt = document.createElement("option");
+      opt.value = name;
+      institutionsList.appendChild(opt);
+    });
+  }
 
   /* ---------- ambient stars ---------- */
   var starsWrap = document.getElementById("stars");

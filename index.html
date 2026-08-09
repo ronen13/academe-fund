@@ -145,10 +145,9 @@
 
       <div class="field">
         <label class="q">באיזה מוסד את/ה לומד/ת או מתכנן/ת ללמוד?</label>
-        <div class="grid-2">
-          <input type="text" name="institution" placeholder="שם מוסד">
-          <input type="text" name="campus" placeholder="קמפוס">
-        </div>
+        <input type="text" name="institution" id="institutionInput" placeholder="שם מוסד" list="institutions-list" autocomplete="off">
+        <datalist id="institutions-list"></datalist>
+        <span class="hint">התחל/י להקליד — ניתן גם להזין שם מוסד שאינו ברשימה.</span>
         <span class="match-tag">✦ מתאים: מלגות מוסדיות, דיקנט, קרנות תורמים, מלגות פקולטה</span>
       </div>
 
@@ -323,6 +322,18 @@
       </div>
 
       <div class="field">
+        <label class="q">האם את/ה נעזר/ת במימון חיצוני נוסף לתשלום שכר הלימוד?</label>
+        <div class="options cols-2" data-name="external_tuition_funding" data-type="radio">
+          <label class="opt"><input type="radio" name="external_tuition_funding" value="כן"><span>כן</span></label>
+          <label class="opt"><input type="radio" name="external_tuition_funding" value="לא"><span>לא</span></label>
+        </div>
+        <div class="conditional" id="cond-external-funding" data-show-when="external_tuition_funding=כן">
+          <input type="text" name="external_tuition_funding_source" placeholder="ממי? (הורים, הלוואה, קרן וכו')">
+        </div>
+        <span class="match-tag">✦ מתאים: מלגות המשלימות מימון קיים, הפחתת נטל הלוואות</span>
+      </div>
+
+      <div class="field">
         <label class="q">האם, להערכתך, תצטרך/י מקורות מימון נוספים (משלימים) עבור שנת הלימודים הקרובה? אם כן — באיזה היקף?</label>
         <textarea name="extra_funding_year" placeholder="ניתן לפרט כאן, או להשאיר ריק"></textarea>
       </div>
@@ -399,7 +410,7 @@
     <p>קיבלנו את הפרטים שלך. צוות AcadeMe.Fund יתחיל להתאים עבורך מלגות ומענים רלוונטיים, ויחזור אליך בהקדם לפרטי הקשר שהשארת.</p>
   </section>
 
-  <div class="footer-note">AcadeMe.Fund · מבית <a href="https://inno-tech.co.il" target="_blank" rel="noopener">Inno-Tech</a></div>
+  <div class="footer-note">AcadeMe.Fund – <b>משל</b>י<b>מ</b>י<b>ם</b> לך את התואר</div>
 
 </div>
 
